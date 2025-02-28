@@ -35,6 +35,10 @@ const Games = () => {
     },
   ];
 
+  const handleCardClick = (navLink) => {
+    window.location.href = navLink;
+  };
+
   return (
     <motion.div className="min-h-screen bg-gradient-to-br from-blue-50 to-purple-50">
       <Navbar />
@@ -54,7 +58,7 @@ const Games = () => {
           transition={{ duration: 0.5, staggerChildren: 0.2 }}
         >
           {games.map((game, index) => (
-            <GameCard key={index} {...game} index={index} />
+            <GameCard key={index} {...game} index={index} onClick={() => handleCardClick(game.navLink)} />
           ))}
         </motion.div>
 

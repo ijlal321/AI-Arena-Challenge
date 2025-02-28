@@ -9,31 +9,35 @@ const Agents = () => {
       title: 'Dark Santa',
       description:
         'A mysterious figure who loves his worker elves and protects them at all costs. He has a metal arm with advanced modifications.',
-      image: '/DarkSanta.jpeg', 
+      image: '/DarkSanta.jpg', 
       navLink: '/dark-santa',
     },
     {
-      title: 'Blue Batman',
+      title: 'Blue Vigilante',
       description:
         'A vigilante who uses his intelligence and gadgets to fight crime. Known for his blue suit and unmatched detective skills.',
-      image: '/BlueBatman.jpeg',
+      image: '/BlueBatman.jpg',
       navLink: '/blue-batman',
     },
     {
       title: 'Cyber Ninja',
       description:
         'A stealthy warrior with cybernetic enhancements. Masters in martial arts and hacking, always ready for a covert mission.',
-      image: '/CyberNinja.jpeg', 
+      image: '/CyberNinja.webp', 
       navLink: '/cyber-ninja',
     },
     {
       title: 'Quantum Wizard',
       description:
         'A master of quantum mechanics and magic. Uses his knowledge to manipulate reality and cast powerful spells.',
-      image: '/QuantumWizard.jpeg',
+      image: '/QuantumWizard.webp',
       navLink: '/quantum-wizard',
     },
   ];
+
+  const handleCardClick = (navLink) => {
+    window.location.href = navLink;
+  };
 
   return (
     <motion.div className="min-h-screen bg-gradient-to-br from-blue-50 to-purple-50">
@@ -54,7 +58,7 @@ const Agents = () => {
           transition={{ duration: 0.5, staggerChildren: 0.2 }}
         >
           {agents.map((agent, index) => (
-            <AgentCard key={index} {...agent} index={index} />
+            <AgentCard key={index} {...agent} index={index} onClick={() => handleCardClick(agent.navLink)} />
           ))}
         </motion.div>
 

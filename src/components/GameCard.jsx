@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
+import { useNavigate } from 'react-router-dom';
 
-const GameCard = ({ title, description, image, index }) => {
+const GameCard = ({ title, description, image, index, navLink }) => {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+  const navigate = useNavigate();
 
   const handleMouseMove = (e) => {
     const { left, top, width, height } = e.currentTarget.getBoundingClientRect();
@@ -11,13 +13,18 @@ const GameCard = ({ title, description, image, index }) => {
     setMousePosition({ x, y });
   };
 
+  const handleClick = () => {
+    navigate(navLink);
+  };
+
   return (
     <motion.div
       initial={{ opacity: 0, y: 50 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5, delay: index * 0.2 }}
       onMouseMove={handleMouseMove}
-      className="relative backdrop-blur-md bg-white/30 rounded-xl overflow-hidden"
+      onClick={handleClick}
+      className="relative backdrop-blur-md bg-white/30 rounded-xl overflow-hidden cursor-pointer"
       style={{
         perspective: 1000,
         boxShadow: '0 8px 32px 0 rgba(31, 38, 135, 0.37)',
